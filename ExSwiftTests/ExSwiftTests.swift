@@ -43,7 +43,7 @@ class ExSwiftSpec: QuickSpec {
 
             var seq = [1, 2, 3, 4].generate()
 
-            let g = Ex.once { Void -> Int in
+            let g = ExSwift.once { Void -> Int in
                 return seq.next()!
             }
 
@@ -68,7 +68,17 @@ class ExSwiftSpec: QuickSpec {
         it("bind") {
 
             let concat = { (params: String...) -> String in
-                return params.implode(" ")!
+                guard params.count > 0 else {
+                    return ""
+                }
+                
+                var result: String = params.first!
+                
+                for param in params.skip(1) {
+                    result += " \(param)"
+                }
+                
+                return result
             }
 
             let helloWorld = ExSwift.bind(concat, "Hello", "World")

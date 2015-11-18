@@ -33,7 +33,10 @@ class IntExtensionsSpec: QuickSpec {
             it("index") {
             
                 var indexes = [Int]()
-                5.times(indexes.append)
+                func testAppend(data: Int) {
+                    indexes.append(data)
+                }
+                5.times(testAppend)
                 
                 expect(indexes) == [0, 1, 2, 3, 4]
                 
@@ -73,7 +76,7 @@ class IntExtensionsSpec: QuickSpec {
         it("random") {
         
             var indexes = [Int]()
-            10.times { indexes.append(Int.random(min: 5, max: 25)) }
+            10.times { indexes.append(Int.random(5, max: 25)) }
             
             expect(indexes).to(allPass { $0 >= 5 && $0 <= 25 })
         
@@ -83,9 +86,11 @@ class IntExtensionsSpec: QuickSpec {
         *  Int.upTo
         */
         it("upTo") {
-            
             var result = [Int]()
-            5.upTo(10, function: result.append)
+            func testAppend(data: Int) {
+                result.append(data)
+            }
+            5.upTo(10, function: testAppend)
             
             expect(result) == [Int](5...10)
             
@@ -97,7 +102,10 @@ class IntExtensionsSpec: QuickSpec {
         it("downTo") {
             
             var result = [Int]()
-            5.downTo(0, function: result.append)
+            func testAppend(data: Int) {
+                result.append(data)
+            }
+            5.downTo(0, function: testAppend)
             
             expect(result) == [5, 4, 3, 2, 1, 0]
             

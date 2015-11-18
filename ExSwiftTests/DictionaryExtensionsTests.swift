@@ -157,14 +157,14 @@ class DictionaryExtensionsSpec: QuickSpec {
             let unshifted = self.dictionary
             let (key, value) = self.dictionary.shift()!
             
-            expect(unshifted.keys.array).to(contain(key))
-            expect(self.dictionary.keys.array).toNot(contain(key))
+            expect(Array(unshifted.keys)).to(contain(key))
+            expect(Array(self.dictionary.keys)).toNot(contain(key))
             
             expect(unshifted[key]) == value
             expect(self.dictionary[key]).to(beNil())
             
-            expect(unshifted.values.array).to(contain(value))
-            expect(self.dictionary.values.array).toNot(contain(value))
+            expect(Array(unshifted.values)).to(contain(value))
+            expect(Array(self.dictionary.values)).toNot(contain(value))
             
         }
         
@@ -196,7 +196,7 @@ class DictionaryExtensionsSpec: QuickSpec {
                 return (value % 2 == 0)
             }
             
-            expect(grouped.keys.array - [false, true]).to(beEmpty())
+            expect(Array(grouped.keys) - [false, true]).to(beEmpty())
             expect(grouped[true]) == [2]
             
             expect(grouped[false]!.count) == 2
@@ -213,7 +213,7 @@ class DictionaryExtensionsSpec: QuickSpec {
                 return (value % 2 == 0)
             }
             
-            expect(grouped.keys.array - [false, true]).to(beEmpty())
+            expect(Array(grouped.keys) - [false, true]).to(beEmpty())
             expect(grouped[true]) == 1
             expect(grouped[false]) == 2
             
@@ -236,7 +236,7 @@ class DictionaryExtensionsSpec: QuickSpec {
                 return initial + couple.1
             })
         
-            expect(reduced2) == self.dictionary.values.array.reduce(+)
+            expect(reduced2) == Array(self.dictionary.values).reduce(+)
         
         }
         
@@ -356,8 +356,8 @@ class DictionaryExtensionsSpec: QuickSpec {
         */
         it("toArray") {
             
-            expect(self.dictionary.toArray({ (key, value) -> String in key })) == self.dictionary.keys.array
-            expect(self.dictionary.toArray({ (key, value) -> Int in value })) == self.dictionary.values.array
+            expect(self.dictionary.toArray({ (key, value) -> String in key })) == Array(self.dictionary.keys)
+            expect(self.dictionary.toArray({ (key, value) -> Int in value })) == Array(self.dictionary.values)
             
             expect(self.dictionary.toArray({ (key, value) -> Bool in false })) == [false, false, false]
             

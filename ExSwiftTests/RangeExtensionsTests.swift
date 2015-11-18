@@ -36,7 +36,9 @@ class RangeExtensionsSpec: QuickSpec {
         it("each") {
         
             var items = [Int]()
-            (0..<2).each(items.append)
+            (0..<2).each{(current: Int) in
+                items.append(current)
+            }
         
             expect(items) == [0, 1]
             

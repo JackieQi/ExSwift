@@ -3,8 +3,8 @@ use_frameworks!
 
 def import_test_pods
 
-    pod 'Quick', '~> 0.3.1'
-    pod 'Nimble', '~> 0.4.2'
+pod 'Quick', '~> 0.8.0'
+pod 'Nimble', '~> 3.0.0'
 
 end
 
