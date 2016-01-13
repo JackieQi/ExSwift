@@ -83,11 +83,11 @@
 		3C0AB97D195C7FBC0009BDA0 /* SequenceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AB97C195C7FBC0009BDA0 /* SequenceExtensionsTests.swift */; };
 		6CB1F15F1A8AB867002EA767 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1F15E1A8AB867002EA767 /* Bool.swift */; };
 		6CB1F1631A8ABA1A002EA767 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1F15E1A8AB867002EA767 /* Bool.swift */; };
-		C92CDB677DFB277345154557 /* Pods_ExSwiftTests_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECB8EF8122D738F03BF728A /* Pods_ExSwiftTests_Mac.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C92CDB677DFB277345154557 /* Pods_ExSwiftTests_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8ECB8EF8122D738F03BF728A /* Pods_ExSwiftTests_Mac.framework */; };
 		CC633BA61A37142900341557 /* CharacterExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC633BA51A37142900341557 /* CharacterExtensionsTests.swift */; };
 		CC633BA71A37144E00341557 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C1D701A365CA6003D386E /* Character.swift */; };
 		CC8C1D711A365CA6003D386E /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C1D701A365CA6003D386E /* Character.swift */; };
-		F3AC8B534C220FCC23ECFD1A /* Pods_ExSwiftTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886BBDB908D7803BE253AAA4 /* Pods_ExSwiftTests_iOS.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F3AC8B534C220FCC23ECFD1A /* Pods_ExSwiftTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 886BBDB908D7803BE253AAA4 /* Pods_ExSwiftTests_iOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
