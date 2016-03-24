@@ -231,7 +231,18 @@ public extension Array {
             result.append([get(i)] + arrays.map { (element) -> Any? in
                 // let (_, mirror) = reflect(element)[i]
                 // return mirror.value
-                return Mirror(reflecting: element).children
+              let reflection = Mirror(reflecting: element)
+
+              if reflection.displayStyle! == Mirror.DisplayStyle.Collection {
+                let collection = reflection.children
+                
+                for (index, child) in collection.enumerate() {
+                  if index == i {
+                    return child.value
+                  }
+                }
+              }
+              return reflection.children
             })
 
         }
@@ -587,6 +598,10 @@ public extension Array {
         - returns: First n elements
     */
     func take (n: Int) -> Array {
+      var n = n
+      if n > self.count {
+        n = self.count
+      }
         return Array(self[0..<Swift.max(0, n)])
     }
 
@@ -637,7 +652,11 @@ public extension Array {
         - returns: Last n elements
     */
     func tail (n: Int) -> Array {
-
+        var n = n
+        if n > count {
+          n = count
+        }
+      
         return  Array(self[(count - n)..<count])
         
     }
@@ -649,7 +668,10 @@ public extension Array {
         - returns: Array from n to the end
     */
     func skip (n: Int) -> Array {
-    
+        var n = n
+        if n < 0 {
+          n = 0
+        }
         return n > count ? [] : Array(self[Int(n)..<count])
         
     }
@@ -1099,9 +1121,11 @@ public extension Array {
     func flatten <OutType> () -> [OutType] {
         var result = [OutType]()
         let mirror = Mirror(reflecting: self)
+      
         if let mirrorChildrenCollection = AnyRandomAccessCollection(mirror.children) {
 
             for (_, value) in mirrorChildrenCollection {
+              
                 result += Ex.bridgeObjCObject(value) as [OutType]
             }
 

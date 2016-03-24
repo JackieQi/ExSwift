@@ -99,22 +99,22 @@ internal extension AnySequence {
         - parameter include: Function invoked to test elements for inclusion in the sequence
         - returns: Filtered sequence
     */
-    func filter(include: (Element) -> Bool) -> AnySequence<Element> {
-        return AnySequence(self.filter(include))
-    }
-    
+//    func filter(include: (Element) -> Bool) -> AnySequence<Element> {
+//        return AnySequence(self.filter(include))
+//    }
+  
     /**
         Opposite of filter.
     
         - parameter exclude: Function invoked to test elements for exlcusion from the sequence
         - returns: Filtered sequence
     */
-    func reject (exclude: (Element -> Bool)) -> AnySequence<Element> {
-        return self.filter {
-            return !exclude($0)
-        }
-    }
-    
+//    func reject (exclude: (Element -> Bool)) -> AnySequence<Element> {
+//        return self.filter {
+//            return !exclude($0)
+//        }
+//    }
+  
     /**
         Skips the elements in the sequence up until the condition returns false.
     

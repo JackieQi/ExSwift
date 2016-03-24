@@ -253,8 +253,8 @@ extension ExSwift {
         if let obj = object as? T {
             //  object has type T
             result.append(obj)
-        } else if reflection.subjectType == NSArray.self {
-            
+        } else if object is NSArray {
+            //reflection.subjectType == NSArray.self //this doesn't work
             //  If it is an NSArray, flattening will produce the expected result
             if let array = object as? NSArray {
                 result += array.flatten()
