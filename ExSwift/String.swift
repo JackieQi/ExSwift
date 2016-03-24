@@ -31,7 +31,7 @@ public extension String {
             return nil
         }
 
-        let range = Range(start: startIndex.advancedBy(range.startIndex), end: startIndex.advancedBy(range.endIndex))
+        let range = Range(startIndex.advancedBy(range.startIndex)..<startIndex.advancedBy(range.endIndex))
 
         return self[range]
     }
@@ -213,16 +213,16 @@ public extension String {
         - parameter charset: Chars to use in the random string
         - returns: Random string
     */
-    static func random (var length len: Int = 0, charset: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") -> String {
-
-        if len < 1 {
-            len = Int.random(max: 16)
+    static func random (length len: Int = 0, charset: String = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789") -> String {
+        var anotherLen = len
+        if anotherLen < 1 {
+            anotherLen = Int.random(max: 16)
         }
 
         var result = String()
         let max = charset.length - 1
 
-        len.times {
+        anotherLen.times {
             result += charset[Int.random(0, max: max)]!
         }
 

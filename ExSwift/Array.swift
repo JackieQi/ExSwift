@@ -247,9 +247,10 @@ public extension Array {
         - parameter step: The number of elements to progress between each partition.  Set to n if not supplied.
         - returns: Array partitioned into n element arrays, starting step elements apart.
     */
-    func partition (var n: Int, var step: Int? = nil) -> [Array] {
+    func partition (n: Int, step: Int? = nil) -> [Array] {
         var result = [Array]()
-        
+        var step = step
+        var n = n
         // If no step is supplied move n each step.
         if step == nil {
             step = n
@@ -276,9 +277,10 @@ public extension Array {
                     the last partition may less than n elements long.
         - returns: Array partitioned into n element arrays, starting step elements apart.
     */
-    func partition (var n: Int, var step: Int? = nil, pad: Array?) -> [Array] {
+    func partition (n: Int, step: Int? = nil, pad: Array?) -> [Array] {
         var result = [Array]()
-        
+        var n = n
+        var step = step
         // If no step is supplied move n each step.
         if step == nil {
             step = n
@@ -323,9 +325,10 @@ public extension Array {
         - parameter step: The number of elements to progress between each partition. Set to n if not supplied.
         - returns: Array partitioned into n element arrays, starting step elements apart.
     */
-    func partitionAll (var n: Int, var step: Int? = nil) -> [Array] {
+    func partitionAll (n: Int, step: Int? = nil) -> [Array] {
         var result = [Array]()
-
+        var step = step
+        var n = n
         // If no step is supplied move n each step.
         if step == nil {
             step = n
@@ -370,12 +373,11 @@ public extension Array {
         Randomly rearranges the elements of self using the Fisher-Yates shuffle
     */
     mutating func shuffle () {
-
-        for var i = self.count - 1; i >= 1; i-- {
-            let j = Int.random(max: i)
-            if i != j {
-                swap(&self[i], &self[j])
-            }
+      for i in (self.count - 1).stride(through: 1, by: -1) {
+          let j = Int.random(max: i)
+          if i != j {
+              swap(&self[i], &self[j])
+          }
         }
         
     }
@@ -739,7 +741,7 @@ public extension Array {
         if n == 1 {
             endArray += [array]
         }
-        for var i = 0; i < n; i++ {
+        for i in 0..<n {
             permutationHelper(n - 1, array: &array, endArray: &endArray)
             let j = n % 2 == 0 ? i : 0;
             //(array[j], array[n - 1]) = (array[n - 1], array[j])
@@ -792,7 +794,7 @@ public extension Array {
             let groupKey = group(item)
 
             if result.has(groupKey) {
-                result[groupKey]!++
+                result[groupKey]! += 1
             } else {
                 result[groupKey] = 1
             }
@@ -827,12 +829,12 @@ public extension Array {
             combinations.append(combination)
             var i = indexes.count - 1
             while i >= 0 && indexes[i] == self.count - 1 {
-                i--
+                i -= 1
             }
             if i < 0 {
                 break
             }
-            indexes[i]++
+            indexes[i] += 1
             (i+1).upTo(indexes.count - 1) { j in
                 indexes[j] = indexes[i]
             }
@@ -861,12 +863,12 @@ public extension Array {
             combinations.append(combination)
             var i = indexes.count - 1
             while i >= 0 && indexes[i] == i + offset {
-                i--
+                i -= 1
             }
             if i < 0 {
                 break
             }
-            i++
+            i += 1
             let start = indexes[i-1] + 1
             for j in (i-1)..<indexes.count {
                 indexes[j] = start + j - i + 1
@@ -914,7 +916,7 @@ public extension Array {
 
         for item in self {
             if test(item) {
-                result++
+                result += 1
             }
         }
 
@@ -1150,7 +1152,7 @@ public extension Array {
             for item in self {
                 block(item)
             }
-            cyclesRun++
+            cyclesRun += 1
         }
     }
 
@@ -1320,7 +1322,7 @@ public extension Array {
             return []
         }
             
-        return Array(self[Range(start: start, end: end)] as ArraySlice<Element>)
+        return Array(self[Range(start..<end)] as ArraySlice<Element>)
     }
 
     /**
@@ -1330,7 +1332,7 @@ public extension Array {
         - returns: Subarray or nil if the index is out of bounds
     */
     subscript (interval: HalfOpenInterval<Int>) -> Array {
-        return self[rangeAsArray: Range(start: interval.start, end: interval.end)]
+        return self[rangeAsArray: Range(interval.start..<interval.end)]
     }
     
     /**
@@ -1340,7 +1342,7 @@ public extension Array {
         - returns: Subarray or nil if the index is out of bounds
     */
     subscript (interval: ClosedInterval<Int>) -> Array {
-        return self[rangeAsArray: Range(start: interval.start, end: interval.end + 1)]
+        return self[rangeAsArray: Range(interval.start..<interval.end + 1)]
     }
     
     /**
