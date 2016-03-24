@@ -19,12 +19,12 @@ class RangeExtensionsSpec: QuickSpec {
         it("times") {
         
             var count: Int = 0
-            (2..<4).times { count++ }
+            (2..<4).times { count += 1 }
             
             expect(count) == 2
             
             count = 0
-            (2...4).times { count++ }
+            (2...4).times { count += 1 }
             
             expect(count) == 3
         

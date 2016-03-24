@@ -337,8 +337,12 @@ public extension Array {
         if step < 1 { step = 1 } // Less than 1 results in an infinite loop.
         if n < 1    { n = 0 }    // Allow 0 if user wants [[],[],[]] for some reason.
 
-        for i in 0.stride(through: count, by: step!) {
-            result += [Array(self[i..<(i + n)])]
+        for i in 0.stride(to: count, by: step!) {
+          
+          if i + n >= count {
+            n = count - i
+          }
+          result += [Array(self[i..<(i + n)])]
         }
 
         return result

@@ -22,10 +22,10 @@ class IntExtensionsSpec: QuickSpec {
             
                 var count = 0
                 
-                5.times { count++ }
+                5.times { count += 1 }
                 expect(count).to(equal(5))
                 
-                0.times { count++ }
+                0.times { count += 1 }
                 expect(count).to(equal(5))
                 
             }

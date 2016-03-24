@@ -225,7 +225,8 @@ class DictionaryExtensionsSpec: QuickSpec {
         it("reduce") {
         
             let reduced1 = self.dictionary.reduce([Int: String](), combine: {
-                (var initial: [Int: String], couple: (String, Int)) in
+                (initial: [Int: String], couple: (String, Int)) in
+                var initial = initial
                 initial.updateValue(couple.0, forKey: couple.1)
                 return initial
             })

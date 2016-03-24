@@ -96,7 +96,7 @@ class ExSwiftSpec: QuickSpec {
             fib = { (params: Int...) -> Int in
                 let n = params[0]
 
-                calls++
+                calls += 1
 
                 if n <= 1 {
                     return n
