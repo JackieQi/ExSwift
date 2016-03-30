@@ -388,7 +388,7 @@ public extension Array {
         Randomly rearranges the elements of self using the Fisher-Yates shuffle
     */
     mutating func shuffle () {
-      for i in (self.count - 1).stride(through: 1, by: -1) {
+      for i in (1..<self.count).reverse() {
           let j = Int.random(max: i)
           if i != j {
               swap(&self[i], &self[j])
